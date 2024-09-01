@@ -1,0 +1,11 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Umandi",
+  "license": "ISC",
+  "description": ""
+}
