@@ -1,15 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "npm test"
-  },
-  "author": "Umandi",
-  "license": "ISC",
-  "description": ""
-=======
   "name": "pos-backend",
   "module": "src/app.js",
   "type": "module",
@@ -22,6 +11,7 @@
   "scripts": {
     "start": "bun run src/app.js",
     "dev": "nodemon src/app.js"
+
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -37,11 +27,5 @@
     "mongoose": "^8.5.1",
     "socket.io": "^4.7.5",
     "uuid": "^10.0.0"
-  },
-  "version": "1.0.0",
-  "description": "To install dependencies:",
-  "main": "index.js",
-  "author": "",
-  "license": "ISC"
->>>>>>> front-dev
+  }
 }
