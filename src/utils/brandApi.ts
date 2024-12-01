@@ -16,7 +16,7 @@ export const fetchFromApi = async (endpoint: string, options?: RequestInit) => {
 export const createBrand = async (endpoint: string, brand: {
   brandName: string,
   brandAgentEmail: string,
-  brandContact: number
+  brandContact: string
 }) => {
  // console.log('Starting request to:', `${BASE_URL}/${endpoint}`);
   //console.log('Brand data:', brand);

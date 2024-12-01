@@ -14,6 +14,13 @@ import { fetchFromApi } from "@/utils/brandApi";
 import { BrandDeleteButton } from "./brandDelete";
 import { BrandEditButton } from "./brandeditbutton";
 
+interface Brand {
+  brandId:string;
+  brandName: string;
+  email: string;
+  contact: string;
+}
+
 const fetchBrandData = async () => {
   try {
     const data = await fetchFromApi('brands');
@@ -34,7 +41,7 @@ const fetchBrandData = async () => {
 }
 
 export function BrandDataEdit() {
-  const [brandData, setBrandData] = useState([]);
+  const [brandData, setBrandData] = useState<Brand[]>([]);
   const refreshData = async () => {
     const data = await fetchBrandData();
     setBrandData(data);

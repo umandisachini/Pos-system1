@@ -11,6 +11,11 @@ import {
 } from "@/components/ui/table";
 import { fetchFromApi } from "../utils/Userapi";
 
+interface User{
+  username:string;
+  type:string;
+}
+
 const fetchUserData = async () => {
   try {
     const data = await fetchFromApi('users');
@@ -27,7 +32,7 @@ const fetchUserData = async () => {
 };
 
 export function ExitUsers() {
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState<User[]>([]);
 
   useEffect(() => {
     const getData = async () => {

@@ -16,6 +16,13 @@ import React, { useState, useEffect } from "react";
 import { UserDeleteButton } from "./userdelete";
 import { UserEditButton } from "./userEdit";
 
+interface User{
+  userid:string;
+  username:string;
+  type:string;
+}
+
+
 const fetchUserData = async () => {
   try {
     const data = await fetchFromApi('users');
@@ -36,7 +43,7 @@ const fetchUserData = async () => {
 };
 
   export function DataTable() {
-    const [userData, setUserData] = useState([]);
+    const [userData, setUserData] = useState<User[]>([]);
 
     useEffect(() => {
       const getData = async () => {

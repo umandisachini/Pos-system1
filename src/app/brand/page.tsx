@@ -1,8 +1,8 @@
 import { BrandAddForm } from "@/components/addBrandForm";
-import { BrandtList } from "@/components/brandDetail";
 import NavBar from "@/components/navBar";
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import BrandDetail from "@/components/brandDetail";
 
 const BrandPage: React.FC = () =>{
     return(
@@ -18,7 +18,7 @@ const BrandPage: React.FC = () =>{
                     <TabsTrigger value="2">New Brands</TabsTrigger>
                 </TabsList>
                     <TabsContent value="1">
-                        <BrandtList/>
+                        <BrandDetail/>
                     </TabsContent>
                     <TabsContent value="2">
                         <div className="flex gap-10">

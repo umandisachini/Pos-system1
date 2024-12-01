@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,6 +16,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+// Define the form schema
 const formSchema = z.object({
   brandName: z.string().min(2, {
     message: "Brand Name must be at least 2 characters.",
@@ -46,17 +47,20 @@ export function BrandAddForm() {
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     const { brandName, brandAgentEmail, brandContact } = values;
 
+    // Ensure brandContact is treated as a string
     const brandData = {
       brandName: brandName,
       brandAgentEmail: brandAgentEmail,
-      brandContact: brandContact,
+      brandContact: brandContact, // it's a string here, not a number
     };
 
     try {
+      // Assuming createBrand function can handle brandContact as a string
       const response = await createBrand("createbrands", brandData);
       if (response.ok) {
         const result = await response.json();
-
+        // Optionally handle the result, maybe show success message
+        console.log("Brand added successfully", result);
       } else {
         throw new Error("Failed to add brand details");
       }
@@ -101,6 +105,7 @@ export function BrandAddForm() {
                 id="contact"
                 placeholder="Contact"
                 {...form.register("brandContact")}
+                type="tel"
               />
               <p className="text-red-500">{form.formState.errors.brandContact?.message}</p>
             </div>
