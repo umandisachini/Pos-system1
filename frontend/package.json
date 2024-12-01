@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "bun run  dev",
+    "start": "bun run backend/src/app.js && bun run  dev",
     "lint": "next lint"
   },
   "dependencies": {
