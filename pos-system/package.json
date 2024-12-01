@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "main": "src/app/page.tsx",
-  "author": "Umayanga",
+  "author": "umandisachini",
   "description": "POS System Electron + NextJS",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "bun run backend/src/app.js && bun run  dev",
+    "start": "bun run src/api/app.js && bun run  dev",
     "lint": "next lint"
   },
   "dependencies": {
