@@ -25,6 +25,10 @@ interface EditProductButtonProps {
   productId: string;
 }
 
+interface Brand{
+  brandName:string;
+}
+
 const fetchProductDataById = async (productId: string) => {
   try {
     const data = await fetchProductById(productId);
@@ -51,7 +55,7 @@ export function ProductEditbutton({ productId }: EditProductButtonProps) {
     stock: '',
     brand: ''
   });
-  const [brands, setBrands] = useState([]);
+  const [brands, setBrands] = useState<Brand[]>([]);
 
   useEffect(() => {
     const getData = async () => {
