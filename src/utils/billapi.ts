@@ -12,15 +12,15 @@ export const fetchFromApi = async (endpoint: string, options?: RequestInit) => {
 
 
 const createBill = async (bill: {
-    billDate : Date,
-    billTotal : Number,
-    items:[{
-        productID:String,
-        unitPrice:Number,
-        quantity:Number,
-        total:Number
-    }],
- }) => {
+    billDate: Date,
+    billTotal: Number,
+    items: {
+        productID: String,
+        unitPrice: Number,
+        quantity: Number,
+        total: Number
+    }[],  // Change from a tuple with one item to a regular array
+}) => {
     const options = {
         method: 'POST',
         headers: {
@@ -30,7 +30,8 @@ const createBill = async (bill: {
     };
 
     return fetchFromApi('createbills', options);
-}
+};
+
 
 const fetchBillById = async (id: string) => {
     return fetchFromApi(`bill/${id}`);

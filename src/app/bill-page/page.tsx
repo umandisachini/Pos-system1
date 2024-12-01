@@ -50,24 +50,29 @@ export default function BillPage() {
         setTotal(prev => prev - product.price);
     };
 
+    
     const handlePayment = async () => {
-    const items = billItems.map(item => ({
-        productID: item.productname,
-        unitPrice: item.price,
-        quantity: item.count,
-        total: item.price * item.count,
-    }));
-    const bill = {
-        billDate: new Date(),
-        billTotal: total,
-        items: items, // Remove the extra array wrapping the items property
-    };
-      const addTODB = await createBill(bill);
-      if (addTODB) {
-          setBillItems([]);
-          setTotal(0);
-      }
+        const items = billItems.map(item => ({
+            productID: item.productname,
+            unitPrice: item.price,
+            quantity: item.count,
+            total: item.price * item.count,
+        }));
+    
+        // Ensure there is only one item in the array
+        const bill = {
+            billDate: new Date(),
+            billTotal: total,
+            items: [items[0]], // Wrap the first item in an array (if you want only one item)
+        };
+    
+        const addTODB = await createBill(bill);
+        if (addTODB) {
+            setBillItems([]);
+            setTotal(0);
+        }
     }
+    
 
     return (
         <div className="flex">

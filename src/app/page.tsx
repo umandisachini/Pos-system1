@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button"
+
 import Login  from "./login/page";
-import { Settings } from "./settings/page";
 
 export default function Home() {
   return (
