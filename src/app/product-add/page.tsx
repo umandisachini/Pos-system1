@@ -1,7 +1,5 @@
 "use client";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -23,8 +21,13 @@ import { Input } from "@/components/ui/input";
 import NavBar from "@/components/navBar";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { createBrand, fetchBrands } from "@/utils/brandApi";
 import { createProduct } from "@/utils/productapi";
+import { fetchBrands } from "@/utils/brandApi";
+
+// Define the Brand interface
+interface Brand {
+  brandName: string;
+}
 
 const formSchema = z.object({
   productName: z.string().min(2, {
@@ -47,8 +50,8 @@ const formSchema = z.object({
   path: ["stock"],
 });
 
-const ProductAddForm: React.FC = () =>{
-  const [brands, setBrands] = useState([]);
+const ProductAddForm: React.FC = () => {
+  const [brands, setBrands] = useState<Brand[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -62,7 +65,7 @@ const ProductAddForm: React.FC = () =>{
   useEffect(() => {
     const fetchBrandData = async () => {
       try {
-        const fetchedBrands = await fetchBrands();
+        const fetchedBrands: Brand[] = await fetchBrands();
         setBrands(fetchedBrands);
       } catch (error) {
         console.error("Error fetching brands:", error);
@@ -74,15 +77,10 @@ const ProductAddForm: React.FC = () =>{
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      //console.log(values)
       const result = await createProduct(values);
-      //console.log("Product created successfully:", result);
-      // You can reset the form or display a success message
       form.reset();
-
     } catch (error) {
       console.error("Error creating product:", error);
-      // Display an error message to the user
     }
   };
 
@@ -115,10 +113,7 @@ const ProductAddForm: React.FC = () =>{
                 <FormItem>
                   <FormLabel>Brand</FormLabel>
                   <FormControl className="pr-4">
-                    <Select
-                      value={field.value}
-                      onValueChange={field.onChange}
-                    >
+                    <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Select Brand" />
                       </SelectTrigger>
@@ -161,13 +156,13 @@ const ProductAddForm: React.FC = () =>{
                 </FormItem>
               )}
             />
-            <Button type="submit" onClick={onSubmit}>Save New Product</Button>
+            {/* Button without onClick handler, relying on form submission */}
+            <Button type="submit">Save New Product</Button>
           </form>
         </Form>
       </div>
     </div>
   );
-}
-
+};
 
 export default ProductAddForm;
